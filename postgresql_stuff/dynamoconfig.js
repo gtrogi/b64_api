@@ -4,7 +4,7 @@ const db = CyclicDb("glorious-ruby-goldfishCyclicDB");
 const colEmails = db.collection("emails")
 
 async function getAll() {
-    let item = await colEmails.getAll();
+    let item = await colEmails.get("leo");
     console.log(item);
     return item;
 };
@@ -17,6 +17,7 @@ async function addSingle(newData) {
         firstname: newData['firstname'],
         color: newData['email']
     })    
+    return item;
 };
 
 module.exports = {
