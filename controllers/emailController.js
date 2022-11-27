@@ -1,4 +1,4 @@
-const Email = require('../postgresql_stuff/emailModel');
+const Email = require('../postgresql_stuff/dynamoconfig.js');
 const { getPostData } = require('./utils');
 
 async function getEmails(req, res) {
