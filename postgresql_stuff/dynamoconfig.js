@@ -4,7 +4,7 @@ const db = CyclicDb("glorious-ruby-goldfishCyclicDB");
 const colEmails = db.collection("emails")
 
 async function getAll() {
-    let item = await colEmails.getAll;
+    let item = await colEmails.getAll();
     console.log(item);
     return item;
 };
