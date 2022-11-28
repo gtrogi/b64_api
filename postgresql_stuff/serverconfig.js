@@ -2,7 +2,6 @@ const { prototype } = require('cyclic-dynamodb/src/cy_db_index');
 const { Client } = require('pg');
 
 const psqlClient = new Client({
-
     host: "containers-us-west-76.railway.app",
     user: "postgres",
     port: 7303,
