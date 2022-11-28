@@ -1,21 +1,19 @@
 const http = require('http');
-const { getEmails, addEmail } = require('./controllers/emailController');
+const { getEmails, getEmail, addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
     let message = JSON.stringify({ message: 'Route Not Found'});
     let code = 404;
 
-    console.log("one place")
-
     //choose and execute the correct route
     if(req.url === '/api/emails' && req.method === 'GET') {
         message = await getEmails(req, res);
         code = 200;
-        
-    // } else if(req.url.match(/\/api\/emails\/[0-9]+$/) && req.method === 'GET') {
-    //     const id = req.url.split('/')[3];
-    //     message = await getEmail(req, res, id);
+    } else if(req.url.match(/\/api\/emails\/[0-9]+$/) && req.method === 'GET') {
+        const id = req.url.split('/')[3];
+        message = await getEmail(req, res, id);
+        code = 200;
     } else if(req.url === '/api/emails' && req.method === 'POST') {
         message = await addEmail(req, res);
         code = 200;
