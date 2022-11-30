@@ -1,4 +1,4 @@
-const { psqlClient } = require('./serverconfig - Local');
+const { psqlClient } = require('./serverconfig');
 
 // function getAll() {
 //     return new Promise((resolve, reject) => {
