@@ -18,7 +18,7 @@ const server = http.createServer(async (req, res) => {
     // } else 
     if(req.url === '/api/emails' && req.method === 'POST') {
         returnMessage = await addEmail(req, res);
-        if(message) {
+        if(returnMessage) {
             message = returnMessage;
             code = 200;
         }
