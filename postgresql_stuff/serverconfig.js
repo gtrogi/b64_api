@@ -10,6 +10,8 @@ const psqlClient = new Client({
 
 psqlClient.connect();
 
+console.log(process.env.RWHOST);
+
 module.exports = {
     psqlClient
 };
