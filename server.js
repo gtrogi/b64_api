@@ -27,5 +27,5 @@ const server = http.createServer(async (req, res) => {
 //note: process.env.PORT picks up the environment variable so if you
 //      install on a different server and they set the PORT it will
 //      listen to that port instead
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3003;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
