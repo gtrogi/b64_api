@@ -1,25 +1,25 @@
 const Email = require('../postgresql_stuff/emailModel.js');
 const { getPostData } = require('./utils');
 
-async function getEmails(req, res) {
-    try {
-        const emails = await Email.getAll();
+// async function getEmails(req, res) {
+//     try {
+//         const emails = await Email.getAll();
 
-        return JSON.stringify(emails);
-    } catch (error) {
-        console.log(error);
-    }
-};
+//         return JSON.stringify(emails);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 
-async function getEmail(req, res, id) {
-    try {
-        const email = await Email.getSingle(id);
+// async function getEmail(req, res, id) {
+//     try {
+//         const email = await Email.getSingle(id);
 
-        return JSON.stringify(email);
-    } catch (error) {
-        console.log(error);
-    }
-};
+//         return JSON.stringify(email);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 
 async function addEmail(req, res) {
     try {
@@ -36,11 +36,12 @@ async function addEmail(req, res) {
         return JSON.stringify(newOutput);
     } catch (error) {
         console.log(error);
+        return 0;
     }
 };
 
 module.exports = {
-    getEmails,
-    getEmail,
+    // getEmails,
+    // getEmail,
     addEmail
 };

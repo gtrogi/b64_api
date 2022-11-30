@@ -1,5 +1,5 @@
 const http = require('http');
-const { getEmails, getEmail, addEmail } = require('./controllers/emailController');
+const { addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
@@ -7,16 +7,18 @@ const server = http.createServer(async (req, res) => {
     let code = 404;
 
     //choose and execute the correct route
-    if(req.url === '/api/emails' && req.method === 'GET') {
-        message = await getEmails(req, res);
-        code = 200;
-    } else if(req.url.match(/\/api\/emails\/[0-9]+$/) && req.method === 'GET') {
-        const id = req.url.split('/')[3];
-        message = await getEmail(req, res, id);
-        code = 200;
-    } else if(req.url === '/api/emails' && req.method === 'POST') {
+    // if(req.url === '/api/emails' && req.method === 'GET') {
+    //     message = await getEmails(req, res);
+    //     code = 200;
+    // } else if(req.url.match(/\/api\/emails\/[0-9]+$/) && req.method === 'GET') {
+    //     const id = req.url.split('/')[3];
+    //     message = await getEmail(req, res, id);
+    //     code = 200;
+    // } else 
+    if(req.url === '/api/emails' && req.method === 'POST') {
         message = await addEmail(req, res);
-        code = 200;
+        if(message)
+            code = 200;
     }
 
     //end the response with the correct return message (always of type json)
