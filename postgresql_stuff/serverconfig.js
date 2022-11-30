@@ -8,7 +8,7 @@ const psqlClient = new Client({
     database: process.env.PGDATABASE
 });
 
-psqlClient.connect();
+psqlClient.connect(process.env.PGHOST);
 
 module.exports = {
     psqlClient
