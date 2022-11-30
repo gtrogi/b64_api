@@ -1,11 +1,11 @@
 const { Client } = require('pg');
 
 const psqlClient = new Client({
-    host: process.env.RWHOST,
-    user: process.env.RWUSER,
-    port: process.env.RWPORT,
-    password: process.env.RWPASSWORD, 
-    database: process.env.RWDATABASE
+    host: process.env.PGHOST,
+    user: process.env.PGUSER,
+    port: process.env.PGPORT,
+    password: process.env.PGPASSWORD, 
+    database: process.env.PGDATABASE
 });
 
 psqlClient.connect();
