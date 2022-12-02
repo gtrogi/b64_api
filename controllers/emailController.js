@@ -22,11 +22,13 @@ async function addEmail(req, res) {
             //unique violation - update the name instead of adding a new record
             try {
                 const newOutput = await Email.updateSingle(newInput);
+
+                return JSON.stringify(newOutput);
             } catch (error) {
                 console.log(error.message);
+
+                return 0;
             }
-            
-            return JSON.stringify(newOutput);
         }
 
         return 0;

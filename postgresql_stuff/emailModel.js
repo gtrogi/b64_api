@@ -28,8 +28,6 @@ function updateSingle(newData) {
 
         const qstring = 'UPDATE emails SET firstname = $1 WHERE email = $2';
 
-        reject( {message: "goofy thing"});
-
         psqlClient.query(qstring, [qName, qEmail], (err, res) => {
             if(!err){
                 resolve(newData);
