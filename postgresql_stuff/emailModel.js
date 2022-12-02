@@ -39,7 +39,7 @@ function addSingle(newData) {
             if(!err){
                 resolve(newData);
             } else {
-                reject(err.name);
+                reject(err.code);
             }
         })
     })
