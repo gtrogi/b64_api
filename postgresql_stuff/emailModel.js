@@ -1,41 +1,25 @@
 const { psqlClient } = require('./serverconfig');
-
-// function getAll() {
-//     return new Promise((resolve, reject) => {
-//         psqlClient.query('SELECT * FROM emails', (err, res) => {
-//             if(!err){
-//                 resolve(res.rows);
-//             } else {
-//                 reject(err.message);
-//             }
-//         })
-//     })
-// };
-
-// function getSingle(id) {
-//     return new Promise((resolve, reject) => {
-//         const qstring = 'SELECT * FROM emails WHERE id = $1';
-//         const qvalues = [id];
-//         psqlClient.query(qstring, qvalues, (err, res) => {
-//             if(!err){
-//                 if(res.rowCount) {
-//                     resolve(res.rows);
-//                 } else {
-//                     resolve({ message: 'Record Not Found'});
-//                 }
-//             } else {
-//                 reject(err.message);
-//             }
-//         })
-//     })
-// };
+const PgError = require("pg-error");
 
 function addSingle(newData) {
     return new Promise((resolve, reject) => {
-        const qstring = 'INSERT INTO emails (firstname, email) VALUES ($1, $2)';
-        const qvalues = [newData['firstname'], newData['email']];
+        const qName = newData['firstname'];
+        const qEmail = newData['email'];
 
-        psqlClient.query(qstring, qvalues, (err, res) => {
+
+        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(qEmail)) {
+            const error = new PgError({
+                message: "not a valid email",
+                severity: "ERROR",
+                code: "69420"
+            })
+
+            reject(error);
+        }
+
+        const qstring = 'INSERT INTO emails (firstname, email) VALUES ($1, $2)';
+
+        psqlClient.query(qstring, [qName, qEmail], (err, res) => {
             if(!err){
                 resolve(newData);
             } else {
@@ -46,7 +30,5 @@ function addSingle(newData) {
 };
 
 module.exports = {
-    // getAll,
-    // getSingle,
     addSingle
 };
