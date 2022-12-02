@@ -36,6 +36,8 @@ async function addEmail(req, res) {
         return JSON.stringify(newOutput);
     } catch (error) {
         console.log(error.message);
+        console.log(error.code);
+        console.log(newOutput)
 
         if(error.code === 23505) { //unique violation - don't worry about it
             return JSON.stringify(newOutput);
