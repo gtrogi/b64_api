@@ -13,7 +13,7 @@ const server = http.createServer(async (req, res) => {
 
     if(req.url === '/api/emails' && req.method === 'OPTIONS') {
         console.log("spot 1");
-        
+        res.setHeader('Access-Control-Allow-Origin', '*');
         message = JSON.stringify({ message: 'CORS Approved'});
         code = 200;
     } else if(req.url === '/api/emails' && req.method === 'POST') {
@@ -26,7 +26,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     //end the response with the correct return message (always of type json)
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    
     res.setHeader('Content-Type', 'application/json');
     res.writeHead(code);
     res.end(message);
