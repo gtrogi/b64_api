@@ -23,7 +23,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     //end the response with the correct return message (always of type json)
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', '192.168.1.1');
     res.setHeader('Content-Type', 'application/json');
     res.writeHead(code);
     res.end(message);
