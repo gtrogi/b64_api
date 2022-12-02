@@ -3,15 +3,21 @@ const { addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
+    console.log("Hello World");
+    console.log(req.url);
+    console.log(req.method);
+
     let returnMessage = 0;
     let message = JSON.stringify({ message: 'Route Not Found'});
     let code = 404;
 
     if(req.url === '/api/emails' && req.method === 'OPTIONS') {
+        console.log("spot 1");
         res.setHeader('Access-Control-Allow-Origin', '*');
         message = JSON.stringify({ message: 'CORS Approved'});
         code = 200;
     } else if(req.url === '/api/emails' && req.method === 'POST') {
+        console.log("spot 2");
         returnMessage = await addEmail(req, res);
         if(returnMessage) {
             message = returnMessage;
