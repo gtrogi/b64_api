@@ -37,15 +37,12 @@ async function addEmail(req, res) {
 
     } catch (error) {
         console.log(error.message);
-            console.log(error.code);
-            console.log(error.code == 23505);
 
-            if(error.code == 23505) { //unique violation - don't worry about it
-                console.log("here I am");
-                return JSON.stringify(newInput);
-            }
+        if(error.code == 23505) { //unique violation - don't worry about it
+            return JSON.stringify({ message: "email already registered" });
+        }
 
-            return 0;
+        return 0;
     }
 };
 
