@@ -3,6 +3,8 @@ const { addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
+    console.log(req);
+    
     let returnMessage = 0;
     let message = JSON.stringify({ message: 'Route Not Found'});
     let code = 404;
@@ -25,7 +27,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     //end the response with the correct return message (always of type json)
-    res.writeHead(code, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '\*' });
+    res.writeHead(code, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(message);
 });
 
