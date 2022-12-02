@@ -31,17 +31,22 @@ async function addEmail(req, res) {
             email
         };
 
-        const newOutput = await Email.addSingle(newInput);
+        try {
+            const newOutput = await Email.addSingle(newInput);
 
-        return JSON.stringify(newOutput);
+            return JSON.stringify(newOutput);
+        } catch(error) {
+            console.log(error.message);
+            console.log(error.code);
+
+            if(error.code === 23505) { //unique violation - don't worry about it
+                return JSON.stringify(newInput);
+            }
+
+            return 0;
+        } 
     } catch (error) {
         console.log(error.message);
-        console.log(error.code);
-        console.log(newInput);
-
-        if(error.code === 23505) { //unique violation - don't worry about it
-            return JSON.stringify(newInput);
-        }
 
         return 0;
     }
