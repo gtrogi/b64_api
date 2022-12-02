@@ -3,9 +3,6 @@ const { addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
-    console.log("Hello World");
-    console.log(req.url);
-    console.log(req.method);
 
     let returnMessage = 0;
     let message = JSON.stringify({ message: 'Route Not Found'});
