@@ -6,21 +6,22 @@ async function addEmail(req, res) {
         const body = await getPostData(req);
         const { firstname, email } = JSON.parse(body);
 
-        const newInput = {
+        var newInput = {
             firstname,
             email
         };
 
         const newOutput = await Email.addSingle(newInput);
 
-
         return JSON.stringify(newOutput);
 
     } catch (error) {
         console.log(error.message);
 
-        if(error.code == 23505) { //unique violation - don't worry about it
-            return JSON.stringify({ message: 'email already registered' });
+        if(error.code == 23505) { 
+            //unique violation - update the name instead of adding a new record
+            const newOutput = await Email.updateSingle(newInput);
+            return JSON.stringify(newOutput);
         }
 
         return 0;
