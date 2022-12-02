@@ -3,7 +3,6 @@ const { addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
-    console.log("Requesting");
     
     let returnMessage = 0;
     let message = JSON.stringify({ message: 'Route Not Found'});
@@ -19,6 +18,7 @@ const server = http.createServer(async (req, res) => {
     //     code = 200;
     // } else 
     if(req.url === '/api/emails' && req.method === 'POST') {
+        console.log("in the sweet spot")
         returnMessage = await addEmail(req, res);
         if(returnMessage) {
             message = returnMessage;
@@ -27,8 +27,9 @@ const server = http.createServer(async (req, res) => {
     }
 
     //end the response with the correct return message (always of type json)
-    res.writeHead(code, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '\*' });
-    console.log(res.getHeaders())
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.writeHead(code);
     res.end(message);
 });
 
