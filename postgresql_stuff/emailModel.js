@@ -7,6 +7,7 @@ function addSingle(newData) {
 
         if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(qEmail)) {
             reject({ message: "not a valid email" });
+            return;
         }
 
         const qstring = 'INSERT INTO emails (firstname, email) VALUES ($1, $2)';
