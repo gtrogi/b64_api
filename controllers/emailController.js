@@ -31,12 +31,12 @@ async function addEmail(req, res) {
             email
         };
 
-        try {
-            const newOutput = await Email.addSingle(newInput);
+        const newOutput = await Email.addSingle(newInput);
 
-            return JSON.stringify(newOutput);
-        } catch(error) {
-            console.log(error.message);
+        return JSON.stringify(newOutput);
+
+    } catch (error) {
+        console.log(error.message);
             console.log(error.code);
             console.log(error.code === 23505);
 
@@ -46,11 +46,6 @@ async function addEmail(req, res) {
             }
 
             return 0;
-        } 
-    } catch (error) {
-        console.log(error.message);
-
-        return 0;
     }
 };
 
