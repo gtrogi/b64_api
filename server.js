@@ -3,25 +3,15 @@ const { addEmail } = require('./controllers/emailController');
 
 const server = http.createServer(async (req, res) => {
     //default if no route is chosen
-    console.log("Hello There");
-    console.log(req.url);
-    console.log(req.method);
-
     let returnMessage = 0;
     let message = JSON.stringify({ message: 'Route Not Found'});
     let code = 404;
 
-    //choose and execute the correct route
-    // if(req.url === '/api/emails' && req.method === 'GET') {
-    //     message = await getEmails(req, res);
-    //     code = 200;
-    // } else if(req.url.match(/\/api\/emails\/[0-9]+$/) && req.method === 'GET') {
-    //     const id = req.url.split('/')[3];
-    //     message = await getEmail(req, res, id);
-    //     code = 200;
-    // } else 
-    if(req.url === '/api/emails' && req.method === 'POST') {
-        console.log("in the sweet spot")
+    if(req.url === '/api/emails' && req.method === 'OPTIONS') {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        message = JSON.stringify({ message: 'CORS Approved'});
+        code = 200;
+    } else if(req.url === '/api/emails' && req.method === 'POST') {
         returnMessage = await addEmail(req, res);
         if(returnMessage) {
             message = returnMessage;
@@ -31,7 +21,6 @@ const server = http.createServer(async (req, res) => {
 
     //end the response with the correct return message (always of type json)
     res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.writeHead(code);
     res.end(message);
 });
