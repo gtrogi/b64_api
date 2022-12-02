@@ -1,5 +1,4 @@
 const { psqlClient } = require('./serverconfig');
-const PgError = require("pg-error");
 
 function addSingle(newData) {
     return new Promise((resolve, reject) => {
@@ -8,13 +7,7 @@ function addSingle(newData) {
 
 
         if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(qEmail)) {
-            const error = new PgError({
-                message: "not a valid email",
-                severity: "ERROR",
-                code: "69420"
-            })
-
-            reject(error);
+            reject("not a valid email");
         }
 
         const qstring = 'INSERT INTO emails (firstname, email) VALUES ($1, $2)';
