@@ -39,5 +39,6 @@ function updateSingle(newData) {
 };
 
 module.exports = {
-    addSingle
+    addSingle,
+    updateSingle
 };
