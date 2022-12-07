@@ -3,7 +3,7 @@ const { psqlClient } = require('./serverconfig');
 function addSingle(newData) {
     return new Promise((resolve, reject) => {
         const qName = newData['firstname'];
-        const qEmail = newData['email'];
+        const qEmail = newData['email'].toLowerCase();
 
         if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(qEmail)) {
             reject({ message: "not a valid email" });
@@ -25,7 +25,7 @@ function addSingle(newData) {
 function updateSingle(newData) {
     return new Promise((resolve, reject) => {
         const qName = newData['firstname'];
-        const qEmail = newData['email'];
+        const qEmail = newData['email'].toLowerCase();
 
         const qstring = 'UPDATE emails SET firstname = $1 WHERE email = $2';
 
