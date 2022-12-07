@@ -5,7 +5,7 @@ function addSingle(newData) {
         const qName = newData['firstname'];
         const qEmail = newData['email'].toLowerCase();
 
-        if(!/^[A-Za-z0-9_!#$%&'*+/=?`{|}~^-]+(?:\.[A-Za-z0-9_!#$%&'*+/=?`{|}~^-])*@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}$/.test(qEmail)) {
+        if(!/^[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+/=?`{|}~^-])*@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}$/.test(qEmail)) {
             reject({ message: "not a valid email" });
             return;
         }
