@@ -19,7 +19,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     //end the response with the correct return message (always of type json)
-    res.setHeader('Access-Control-Allow-Origin', 'brothers64.com');
+    res.setHeader('Access-Control-Allow-Origin', 'http://brothers64.com');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Content-Type', 'application/json');
